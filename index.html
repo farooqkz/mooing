@@ -1,0 +1,102 @@
+<!doctype html>
+<!--
+
+Copyright (C) 2017 Farooq Karimi Zadeh <farooghkarimizadeh@gmail.com>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+-->
+<!--
+   == Credits ==
+    Farooq - Author of this
+    cowsay - For the ASCII cow
+    BigBanksound.com - for the Sound
+-->
+<html>
+    <head>
+        <title>Moo</title>
+        <style>
+            #asciicow_box{
+                font-size: 4.5vw;
+                margin: 0 auto 0 auto;
+                padding-left: 20%;
+                padding-right: 20%;
+                float: right;
+            }
+        </style>
+        <script>
+            var cow = ['','','',
+            '^__^',
+            '(oo)\\_______',
+            '(__)\\       )\\/\\',
+            '    ||----- |',
+            '    ||     ||']
+            // now let's replace all spaces with &nbsp;
+            for (var i=0; i < cow.length; i++){
+                while (cow[i].indexOf(" ") != -1)
+                    cow[i] = cow[i].replace(" ", "&nbsp;");
+            }
+            cow = cow.join("<br>\n");
+            var cow_moo = [' _____', '< moo >', ' -----',
+                            '        \\   ^__^',
+                            '         \\  (oo)\\_______',
+                            '            (__)\\       )\\/\\',
+                            '                ||----- |',
+                            '                ||     ||'];
+            
+            for (var i=0; i < cow_moo.length; i++){
+                while (cow_moo[i].indexOf(" ") != -1)
+                    cow_moo[i] = cow_moo[i].replace(" ", "&nbsp;");
+            }
+            cow_moo = cow_moo.join("<br>\n");
+            function tomoo(){
+                document.getElementById("asciicow").innerHTML = cow_moo;
+            }
+            function tonorm(){
+                document.getElementById("asciicow").innerHTML = cow;
+            }
+            function mooing(){
+                // this makes our asciicow moo whenever the audio says
+                // moo. the audio does this at: .7-2.3,3.2-5.2,6.3-7.9s
+                // when the voice is silent our cow doesn't say anything.
+                tonorm();
+                    setTimeout(tomoo, 700);
+                    setTimeout(tonorm, 2300);
+                    
+                    setTimeout(tomoo, 3200);
+                    setTimeout(tonorm, 5200);
+
+                    setTimeout(tomoo, 6300);
+                    setTimeout(tonorm, 7900);
+                    setTimeout(mooing, 7901);
+            }
+
+            
+        </script>
+    </head>
+    <body onload="mooing();">
+        <script>
+        document.write('<audio src="./moo_0.mp3" autoplay loop></audio>');
+        </script>
+        <div id="asciicow_box">
+        <code id="asciicow"></code>
+        </div>
+        <noscript>If you want to see this thing, enable JS!</noscript>
+    </body>
+</html>
